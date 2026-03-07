@@ -245,9 +245,11 @@ for (uint256 i; i < len; ++i) { }
 
 31. Use Foundry's encrypted secure private key storage instead of plaintext environment variables
 
+32. Upgrades: When upgrading smart contracts, do not change the order or type of existing variables, and do not remove them. This can lead to storage collisions. Also write tests for any upgrades.
+
 ## Deployment
 
-Use Foundry scripts (`forge script`) for both production deployments and test setup. This ensures the same deployment logic runs in development and on mainnet, making deployments more auditable and reducing the gap between test and production environments. Avoid custom test-only setup code that diverges from real deployment paths.
+Use Foundry scripts (`forge script`) for both production deployments and test setup. This ensures the same deployment logic runs in development and on mainnet, making deployments more auditable and reducing the gap between test and production environments. Avoid custom test-only setup code that diverges from real deployment paths. Ideally, your [deploy scripts are audited as well](https://medium.com/cyfrin/deploy-scripts-are-now-in-scope-for-smart-contract-audits-7fbb95788ce7).
 
 Example: use a shared base script that both tests and production inherit from, like [this BaseTest using scripts pattern](https://github.com/rheo-xyz/very-liquid-vaults/blob/main/test/Setup.t.sol).
 
@@ -281,5 +283,6 @@ Every project should have a minimum CI pipeline running in parallel (use a matri
 
 - `solhint` — Solidity linter for style and security rules
 - `forge build --sizes` — verify contract sizes are under the 24KB deployment limit
-- `slither` — static analysis for common vulnerability patterns
+- `slither` or `aderyn` — static analysis for common vulnerability patterns
+    - Before committing code that you think is done, be sure to run aderyn and/or slither on the codebase and inspect the output. Even warnings may lead you to find issues in the codebase.
 - Fuzz/invariant testing — run Echidna, Medusa, or Foundry invariant tests with a reasonable time budget (~10 min per tool, in parallel via matrix)
