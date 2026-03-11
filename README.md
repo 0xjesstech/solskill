@@ -1,11 +1,21 @@
-# Solidity & BattleChain Development Standards
+# Solidity Development Standards
 
 Instructions for writing production grade solidity code and working with BattleChain.
 
 # Installation/Quickstart
 
+Install all skills:
+
 ```bash
 npx skills add cyfrin/solskill
+```
+
+Or install individual skills:
+
+```bash
+npx skills add cyfrin/solskill --skill solidity
+npx skills add cyfrin/solskill --skill battlechain
+npx skills add cyfrin/solskill --skill battlechain-tutorial
 ```
 
 Or, install via the Cyfrin marketplace:
