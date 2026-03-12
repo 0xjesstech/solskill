@@ -167,6 +167,13 @@ Use `AskUserQuestion`:
 
 ## Phase 2 — Confirm & Generate
 
+### Security Rules
+NEVER. EVER. NEVER. Have private keys be in plain text. The _only_ exception to this rule is when using a default key from something like anvil, and it must be marked as such.
+    - This includes in your deploy scripts. We should always use `forge script <path> --account $ACCOUNT --sender $SENDER` for our deploy scripts, and never use `vm.envUnit()` in our scripts.
+Use Foundry's encrypted secure private key storage instead of plaintext environment variables
+
+---
+
 Once you have all answers, summarize them back to the user in a clear table and ask them to confirm before generating scripts:
 
 ```
