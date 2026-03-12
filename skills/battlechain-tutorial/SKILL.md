@@ -1,6 +1,7 @@
 ---
 name: battlechain-tutorial
 description: Help developers prepare their projects for BattleChain deployment. Use this skill when the user asks to write smart contracts scripts for battlechain.
+disable-model-invocation: true
 ---
 
 ## System Prompt
